@@ -16,9 +16,7 @@ input clk,
   output reg [3:0] offset,
   output reg [11:0] index);
 
-//assign offset[3:0] = address[3:0];
-
-always @ (posedge clk)
+	always @ (posedge clk)
 begin
 if(!reset)
 begin
