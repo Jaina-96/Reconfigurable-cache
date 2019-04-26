@@ -33,31 +33,6 @@ reg [3:0] offset;
 reg [11:0] index;
 reg [SETS-1:0] set;
 
-/*always @ (posedge clk)
-begin
-if(!reset)
-begin
-index <= 12'b0;
-tag <= 19'b0;		
-set <= 8'b0;
-offset <= 8'b0;
-end
-else
-begin
-	case(selection_signal)
-		
-		2'b00: begin
-		       index <= address[15:4];
-			tag <= {3'b000, address[31:16]};		
-			set <= {8'b 10000000};
-			offset = address[3:0];
-			end
-		
-	endcase
-end
-end
-
-*/
 always @ (posedge clk)
 begin
 
@@ -131,7 +106,7 @@ begin
 	//$display("index2 is %d", index);
 	RMEM1[index][139:128] = 12'd4095;
 	RMEM1[index][159] =1'b1;
-	RMEM1[index][127:0] = 128'd128; /// j out is the lru pointer
+	RMEM1[index][127:0] = 128'd128;
 	
 	if(write !=1)
 	data_out = RMEM1[index][160:0];
