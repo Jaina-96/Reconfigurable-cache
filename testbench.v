@@ -1,4 +1,4 @@
-/*`timescale 1 ps / 1 ps
+`timescale 1 ps / 1 ps
 
 module cache_tb();
 
@@ -52,21 +52,21 @@ select = 2'b11;
  	.address(i_addr),
 	.reset(reset),
 	.clk(clk),
-	.selection_signal(select),
+	.selection_signal(2'b00),
 	.set(set),
  	.tag(tag),
  	.offset(offset),
 	.index(index)
-);
-*//*
-test dut1 ( 
+);*/
+
+cache_memory dut1 ( 
   	//.set(set),
 	//.tag(tag),
 	//.offset(offset),
-	// .index(index),
+	 //.index(index),
 	 .clk(clk),
 .address(i_addr),
-.selection_signal(select),
+.selection_signal(2'b11),
 	 .reset(reset),       // use
 	.data_in(data_in),
 	.write(write),
@@ -81,26 +81,28 @@ initial
 begin
 	for(i=0; i <= 12'd4095; i=i+1'b1) begin
 		dut1.RMEM1 [i] = (5);
-	end
-end
-		/*dut1.RMEM2 [i] = (5);
+		dut1.RMEM2 [i] = (5);
 		dut1.RMEM3 [i] = (5);
 		dut1.RMEM4 [i] = (5);
 		dut1.RMEM5 [i] = (5);
 		dut1.RMEM6 [i] = (5);
 		dut1.RMEM7 [i] = (5);
-		dut1.RMEM8 [i] = (5);*/
+		dut1.RMEM8 [i] = (5);
+	end
+end
+		
 
 
 
-/*
+
 initial
 begin
 	reset = 1'b0;
 	#(CLK_PERIOD);
 	reset = 1'b1;
 	#(CLK_PERIOD);
-
+	//#(CLK_PERIOD);
+	//#(CLK_PERIOD);
 	
 	write = 1'b1;
 	data_in = 32'b0;
@@ -114,7 +116,7 @@ begin
 	#(CLK_PERIOD);
 	#(CLK_PERIOD);
 	
-	write <= 1'b1;
+	write <= 1'b0;
 	data_in <= 32'b1;
 	i_addr <= 32'd164;
 	#(CLK_PERIOD);
@@ -122,7 +124,52 @@ begin
 
 	write <= 1'b1;
 	data_in <= 32'b10;
-	i_addr <= 32'd164;
+	i_addr <= 32'd164; 
+	#(CLK_PERIOD);
+	#(CLK_PERIOD);
+	
+	
+	write <= 1'b0;
+	data_in <= 32'b0;
+	i_addr <= 32'b0001_0000_0000_0000_0000_0000_1101_0000;
+	#(CLK_PERIOD);
+	#(CLK_PERIOD);
+	
+	
+	write <= 1'b0;
+	data_in <= 32'b10;
+	i_addr <= 32'b0101_0000_0000_0000_0000_0000_1101_0000;
+	#(CLK_PERIOD);
+	#(CLK_PERIOD);
+	
+	write <= 1'b1;
+	data_in <= 32'b10;
+	i_addr <= 32'b0111_0000_0000_0000_0000_0000_1100_0000;
+	#(CLK_PERIOD);
+	#(CLK_PERIOD);
+	
+	
+	write <= 1'b0;
+	data_in <= 32'b1;
+	i_addr <= 32'b1011_0000_0000_0000_0000_0000_1100_0000;
+	#(CLK_PERIOD);
+	#(CLK_PERIOD);
+
+	write <= 1'b0;
+	data_in <= 32'b10;
+	i_addr <= 32'b0100_0000_0000_0000_0000_0000_1100_0000; 
+	
+	#(CLK_PERIOD);
+	#(CLK_PERIOD);
+	
+	/*write <= 1'b0;
+	data_in <= 32'b10;
+	i_addr <= 32'b0111_0000_0000_0000_0000_0000_1100_0000;
+	#(CLK_PERIOD);
+	#(CLK_PERIOD);
+	*/
+
+	
 end
 endmodule 
 /*
@@ -192,7 +239,7 @@ endmodule
 end
 */
 
-`timescale 1 ns / 1 ps
+/*`timescale 1 ns / 1 ps
 
 module cache_tb();
 
@@ -298,7 +345,7 @@ initial begin
 	$stop(0);
 end
 
-endmodule
+endmodule*/
 
 
 
