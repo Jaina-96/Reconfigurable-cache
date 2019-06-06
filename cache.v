@@ -489,3 +489,12 @@ out_reg <= (offset==4'b0000)? data_out[31:0]:(offset==4'b0001)? data_out[63:32]:
 
 end
 end
+
+// lru find the block check its dirty bit and do wrtieback if it is set else just replace in cache
+initial
+begin
+//$monitor("count is: %d", counter);
+
+$monitor("RMEM is: %b", RMEM1[0][160:0]);
+end
+endmodule
